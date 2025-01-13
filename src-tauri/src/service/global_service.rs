@@ -54,7 +54,7 @@ pub fn initialize_global() {
   msg_event_bus.subscribe(log_handler);
 
   // 控制台日志处理器
-  // let console_log_handler = Arc::new(ConsoleLogMessageHandler {
+  // let console_log_handler = Arc::new(Console {
   //   id: rng.gen::<u32>().to_string(),
   // });
   // msg_event_bus.subscribe(console_log_handler);

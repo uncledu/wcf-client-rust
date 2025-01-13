@@ -15,7 +15,7 @@ impl EventHandler for LogMessageHandler {
             let wechat_config = global.wechat_config.read().unwrap();
             let show = wechat_config.front_msg_show.clone();
             if show {
-                log::info!("日志处理器 {} -- 接收到信息: {:?}", self.id, msg);
+                log::info!("日志处理器 {} -- 接收到信息1: {:?}", self.id, msg);
             }
         }
     }

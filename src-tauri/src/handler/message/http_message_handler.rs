@@ -31,7 +31,7 @@ impl EventHandler for HttpMessageHandler {
                 if let Some(ref regex_str) = msg_filter_regexp {
                     let regex = Regex::new(&regex_str).unwrap();
                     if !regex.is_match(&msg.content) {
-                        log::debug!("消息被过滤，内容: {:?}", &msg.content);
+                        log::info!("消息被过滤，内容: {:?}", &msg.content);
                         return;
                     }
                 } else {

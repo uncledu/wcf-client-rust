@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-main>
-            <v-ace-editor ref="aceRef" v-model:value="content" lang="text" :options="options"
+            <v-ace-editor ref="aceRef" v-model:value="content" lang="log" :options="options"
                 :theme="isDark ? 'monokai' : 'chrome'" />
         </el-main>
         <el-footer>
@@ -24,6 +24,8 @@ import { isDark } from "@/composables";
 import { listen } from '@tauri-apps/api/event';
 import { ref } from 'vue';
 import { VAceEditor } from 'vue3-ace-editor';
+
+
 import '@/components/ace/vace.config';
 import 'ace-builds/src-noconflict/mode-text'; // Load the language definition file used below
 import 'ace-builds/src-noconflict/theme-chrome'; // Load the theme definition file used below
@@ -45,6 +47,7 @@ const options: any = ref({
     fontSize: 14, // 设置字号
     wrap: false, // 是否换行
     readonly: true, // 是否可编辑
+    mode: "ace/mode/log", // 模式
 });
 
 const appendLogWithLimit = (message: any, maxLines = 9999) => {
@@ -57,6 +60,7 @@ const appendLogWithLimit = (message: any, maxLines = 9999) => {
         content.value = lines.join("\n");
     }
     if (!aceRef.value) return;
+    aceRef.value.getAceInstance().session.setMode("log");
     aceRef.value.getAceInstance().renderer.scrollToLine(Number.POSITIVE_INFINITY)
 }
 
